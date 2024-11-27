@@ -34,7 +34,7 @@ const template = () => {
     divCountries.innerHTML = "";
     objetosFiltrados.forEach(obj =>{
         divCountries.innerHTML += `
-        <div>
+        <div class="Banderas">
             <h3>${obj.nombre}</h3>
             <img src="${obj.bandera}" alt="Bandera de ${obj.nombre}">
             <p>Capital: ${obj.capital}</p>
