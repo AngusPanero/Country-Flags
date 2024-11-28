@@ -1,4 +1,4 @@
-divCountries = document.getElementById("countries-list");
+const divCountries = document.getElementById("countries-list");
 
 let objetosFiltrados = [];
 
@@ -32,16 +32,47 @@ const traerBanderas = async () => {
 
 const template = () => {
     divCountries.innerHTML = "";
+
     objetosFiltrados.forEach(obj =>{
-        divCountries.innerHTML += `
-        <div class="Banderas">
+        const divBandera = document.createElement("div");
+        divBandera.classList.add("banderas")
+
+    divBandera.innerHTML += `
             <h3>${obj.nombre}</h3>
             <img src="${obj.bandera}" alt="Bandera de ${obj.nombre}">
-            <p>Capital: ${obj.capital}</p>
-            <p>Población: ${obj.poblacion}</p>
-            <p>Conducen por la: ${obj.carretera}</p>
-        </div>
         `;
+
+        divBandera.addEventListener("click", () => {
+            divBandera.classList.remove("banderas")
+            divBandera.classList.add("banderasClick")
+
+            divBandera.innerHTML = `
+            <img class="imgClick" src="${obj.bandera}" alt="Bandera de ${obj.nombre}">
+            <div class="datos">
+                <h3>${obj.nombre}</h3>
+                <p>Capital: ${obj.capital}</p>
+                <p>Población: ${obj.poblacion}</p>
+                <p>Conducen por la: ${obj.carretera}</p>
+            </div>
+            <button class="botonCerrar">Cerrar</button>
+            `;
+
+    const boton = divBandera.querySelector(".botonCerrar") // acá uso mi div en vez de document asi agarro espeficicamente mi boton creado en el DOM
+        boton.addEventListener("click", (event) => {
+            event.stopPropagation(); 
+            // sirve para frenar la propagacion, hace que no afecte a los padres y haga comportamientos raros tengo que pasarle el event en la funcion y acá
+
+            divBandera.innerHTML = "";
+            divBandera.classList.remove("banderasClick")
+            divBandera.classList.add("banderas")
+
+            divBandera.innerHTML += `
+            <h3>${obj.nombre}</h3>
+            <img src="${obj.bandera}" alt="Bandera de ${obj.nombre}">
+            `;
+        })            
+        })
+        divCountries.appendChild(divBandera);
     });
 };
 

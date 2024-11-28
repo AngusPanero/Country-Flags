@@ -3,10 +3,14 @@ body {
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
   color: #333;
+  font-size: 45px;
 }
 
 img{
@@ -19,5 +23,34 @@ img{
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
+  text-align: center;
 }
 
+.banderas{
+  border: 2px red solid;
+  width: 12rem;
+  height: 9rem;
+}
+
+div.banderasClick{
+  position: fixed;
+  top: 40%;
+  left: 35%;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  border: 2px red solid;
+  background-color: white;
+  align-items: center;
+  gap: 15px;
+}
+
+button.botonCerrar{
+  width: 6rem;
+  height: 2rem;
+}
+
+.imgClick{
+  width: 12rem;
+  height: auto;
+}
